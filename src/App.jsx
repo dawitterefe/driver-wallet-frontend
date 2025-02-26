@@ -17,9 +17,20 @@ function App() {
   return (
     <Router>
       <div className="flex min-h-screen w-screen">
-        <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-        <div className="flex-1 ml-0 md:ml-64 transition-all duration-300">
-          <header className="text-gray-700  p-6 flex items-center ">
+        {/* Sidebar with smooth transition */}
+        <Sidebar
+          isOpen={sidebarOpen}
+          toggleSidebar={toggleSidebar}
+          className={`fixed top-0 left-0 h-full bg-white shadow-lg transition-transform duration-300 ease-in-out transform ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        />
+        <div
+          className={`flex-1 transition-all duration-300 ease-in-out ${
+            sidebarOpen ? "md:ml-64" : "md:ml-20"
+          } ml-0`}
+        >
+          <header className="text-gray-700 p-6 flex items-center">
             <button onClick={toggleSidebar} className="mr-4 focus:outline-none">
               <svg className="w-6 h-6" viewBox="0 0 24 24">
                 <defs>
@@ -48,7 +59,7 @@ function App() {
               </svg>
             </button>
 
-            <h1 className="text-xl font-bold">Driver Wallet System</h1>
+            <h2 className="text-4xl font-bold">Driver Wallet System</h2>
           </header>
           <main className="p-6">
             <Routes>
